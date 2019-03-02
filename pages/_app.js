@@ -4,13 +4,19 @@ import App, { Container } from 'next/app';
 import store from '../redux/store';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { appActivate } from '../utils/constants';
+import { WindowContext } from '../utils/constants';
 
-import { faCheck, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faHome, faHashtag } from '@fortawesome/free-solid-svg-icons';
 
-library.add({ faCheck, faHome }); //add other font awesome icons here. Don't forget to import them first.
+//add other font awesome icons here. Don't forget to import them first.
+library.add({ faCheck, faHome, faHashtag }); 
 
+//Activate whatever function that is needed to be available globally
 appActivate();
 
+/**
+ * Do not edit this class unless you know what you're doing
+ */
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
         let pageProps = {}
@@ -23,12 +29,14 @@ class MyApp extends App {
     }
 
     render() {
-        const { Component, pageProps } = this.props
-
+        const { Component, pageProps, getWidth } = this.props;
         return (
             <Provider store={store}>
-                <Container className="bg-white">
-                    <Component {...pageProps} />
+                <Container>
+                    <WindowContext.Provider
+                        value={{ getWidth: getWidth }}>
+                        <Component {...pageProps} />
+                    </WindowContext.Provider>
                 </Container>
             </Provider>
         )

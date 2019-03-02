@@ -5,7 +5,7 @@ import { mobileScreen, tabletScreen, mobileAndTablet, desktopScreen } from '../.
 
 export const getWidthFactory = ({ isPhoneFromSSR, isTabletFromSSR }) => () => {
     const ssrValue = isPhoneFromSSR ? Responsive.onlyMobile.maxWidth :
-        isTabletFromSSR ? Response.onlyTablet.maxWidth :
+        isTabletFromSSR ? Responsive.onlyTablet.maxWidth :
             Responsive.onlyComputer.minWidth;
     return typeof window === "undefined" ? ssrValue : window.innerWidth;
 };

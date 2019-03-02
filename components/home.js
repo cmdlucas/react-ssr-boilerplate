@@ -1,11 +1,46 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { WindowContext, desktopScreen, mobileScreen, tabletScreen } from '../utils/constants';
+import MediaQuery from '../utils/component/mediaquery/semantic';
+
+const MobileDetector = () => {
+    const windowContext = useContext(WindowContext);
+    return (
+        <MediaQuery type={mobileScreen} getWidth={windowContext.getWidth}>
+            mobile screen
+        </MediaQuery>
+    )
+}
+
+const TabletDetector = () => {
+    const windowContext = useContext(WindowContext);
+    return (
+        <MediaQuery type={tabletScreen} getWidth={windowContext.getWidth}>
+            tablet screen
+        </MediaQuery>
+    )
+}
+
+const DesktopDetector = () => {
+    const windowContext = useContext(WindowContext);
+    return (
+        <MediaQuery type={desktopScreen} getWidth={windowContext.getWidth}>
+            desktop screen
+        </MediaQuery>
+    )
+}
 
 const HomeBody = () => {
-    <div className="container text-center">
-        <h1>Hello Next.js,</h1>
-        <h4>Thank you for giving us an SSR 👋</h4>
-        <Link href='/about'><a>About</a></Link>
-    </div>
+    return (
+        <div className="container text-center mt-5">
+            <h1>Hello Next.js,</h1><br />
+            <h4>Thanks for giving us an easy SSR framework 👋</h4><br />
+            <h5>This boilerplate is responsive, it identifies that you're on a <MobileDetector /> <TabletDetector /> <DesktopDetector /> </h5><br /><br />
+        </div>
+    )
 }
+
+/**
+ * NOTE: the take-away from the implementation of this detector is the way the MediaQuery component can (should) be used. Basically, the getWidth is available in globally in as much as you are using <Layout /> as your root component for every page to be rendered.
+ */
 
 export default React.memo(HomeBody);

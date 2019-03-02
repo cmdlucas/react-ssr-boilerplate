@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import Layout from '../utils/component/general/layout';
-import { responsivePropsInit, getWidthFactory } from '../utils/component/mediaquery/semantic';
 import HomeBody from '../components/home';
 
 class Home extends Component {
-    static async getInitialProps({ req }) {
-        return responsivePropsInit(req);
-    }
-
     render() {
-        const { head, isPhoneFromSSR, isTabletFromSSR } = this.props;
-        const getWidth = getWidthFactory({isPhoneFromSSR, isTabletFromSSR});
+        const { head } = this.props;
         return (
-            <Layout head={head}
-                getWidth={getWidth} >
+            <Layout head={head} >
                 <HomeBody />
             </Layout>
         );
@@ -29,11 +21,6 @@ Home.defaultProps = {
         keywords: "React, SSR, NextJS, Boilerplate, React SSR Boilerplate, NextJS Boilerplate",
         metatags: () => <></>
     }
-}
-
-Home.propTypes = {
-    isPhoneFromSSR: PropTypes.bool,
-    isTabletFromSSR: PropTypes.bool
 }
 
 //connect Home component to redux store
