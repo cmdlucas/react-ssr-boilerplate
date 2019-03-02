@@ -33,8 +33,7 @@ class MyApp extends App {
         return (
             <Provider store={store}>
                 <Container>
-                    <WindowContext.Provider
-                        value={{ getWidth: getWidth }}>
+                    <WindowContext.Provider value={{ getWidth: getWidth }}>
                         <Component {...pageProps} />
                     </WindowContext.Provider>
                 </Container>
