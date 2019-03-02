@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Layout from '../utils/components/general/layout';
+import Layout from '../utils/component/general/layout';
 import { responsivePropsInit, getWidthFactory } from '../utils/component/mediaquery/semantic';
 import AboutBody from '../components/about';
 
