@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MobileDetect from 'mobile-detect';
 import { Responsive } from 'semantic-ui-react';
-import { mobileScreen, tabletScreen, mobileAndTablet, desktopScreen } from '../../constants';
+import {
+    mobileScreen, tabletScreen,
+    mobileAndTablet, desktopScreen,
+    WindowContext
+} from '../../constants';
 
 export const getWidthFactory = ({ isPhoneFromSSR, isTabletFromSSR }) => () => {
     const ssrValue = isPhoneFromSSR ? Responsive.onlyMobile.maxWidth :
@@ -18,45 +22,60 @@ export const responsivePropsInit = req => {
     };
 }
 
-const DesktopContainer = ({ children, getWidth }) => (
-    <Responsive fireOnMount getWidth={getWidth}
-        minWidth={Responsive.onlyComputer.minWidth} >
-        {children}
-    </Responsive>
-);
+const DesktopContainer = ({ children }) => {
+    const context = useContext(WindowContext);
+    return (
+        <Responsive fireOnMount getWidth={context.getWidth}
+            minWidth={Responsive.onlyComputer.minWidth} >
+            {children}
+        </Responsive>
+    )
+}
 
-const TabletContainer = ({ children, getWidth }) => (
-    <Responsive fireOnMount getWidth={getWidth}
-        minWidth={Responsive.onlyTablet.minWidth}
-        maxWidth={Responsive.onlyTablet.maxWidth} >
-        {children}
-    </Responsive>
-);
+const TabletContainer = ({ children }) => {
+    const context = useContext(WindowContext);
+    return (
+        <Responsive fireOnMount getWidth={context.getWidth}
+            minWidth={Responsive.onlyTablet.minWidth}
+            maxWidth={Responsive.onlyTablet.maxWidth} >
+            {children}
+        </Responsive>
+    )
+}
 
-const MobileContainer = ({ children, getWidth }) => (
-    <Responsive fireOnMount getWidth={getWidth}
-        maxWidth={Responsive.onlyMobile.maxWidth} >
-        {children}
-    </Responsive>
-);
+const MobileContainer = ({ children }) => {
+    const context = useContext(WindowContext);
+    return (
+        <Responsive fireOnMount getWidth={context.getWidth}
+            maxWidth={Responsive.onlyMobile.maxWidth} >
+            {children}
+        </Responsive>
+    )
+}
 
-const DesktopAndTabletContainer = ({ children, getWidth }) => (
-    <Responsive fireOnMount getWidth={getWidth}
-        minWidth={Responsive.onlyTablet.minWidth}
-        maxWidth={Responsive.onlyComputer.maxWidth} >
-        {children}
-    </Responsive>
-);
+const DesktopAndTabletContainer = ({ children }) => {
+    const context = useContext(WindowContext);
+    return (
+        <Responsive fireOnMount getWidth={context.getWidth}
+            minWidth={Responsive.onlyTablet.minWidth}
+            maxWidth={Responsive.onlyComputer.maxWidth} >
+            {children}
+        </Responsive>
+    )
+}
 
-const MobileAndTabletContainer = ({ children, getWidth }) => (
-    <Responsive fireOnMount getWidth={getWidth}
-        maxWidth={Responsive.onlyTablet.maxWidth} >
-        {children}
-    </Responsive>
-);
+const MobileAndTabletContainer = ({ children }) => {
+    const context = useContext(WindowContext);
+    return (
+        <Responsive fireOnMount getWidth={context.getWidth}
+            maxWidth={Responsive.onlyTablet.maxWidth} >
+            {children}
+        </Responsive>
+    )
+}
 
-export const MediaQuery = ({ type, children, getWidth }) => {
-    const propsToPass = { children, getWidth };
+export const MediaQuery = ({ type, children }) => {
+    const propsToPass = { children };
     switch (type) {
         case mobileScreen: {
             return MobileContainer(propsToPass);

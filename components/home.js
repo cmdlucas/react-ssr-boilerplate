@@ -1,29 +1,26 @@
-import React, { useContext } from 'react';
-import { WindowContext, desktopScreen, mobileScreen, tabletScreen } from '../utils/constants';
+import React from 'react';
+import { desktopScreen, mobileScreen, tabletScreen } from '../utils/constants';
 import MediaQuery from '../utils/component/mediaquery/semantic';
 
 const MobileDetector = () => {
-    const windowContext = useContext(WindowContext);
     return (
-        <MediaQuery type={mobileScreen} getWidth={windowContext.getWidth}>
+        <MediaQuery type={mobileScreen}>
             mobile screen
         </MediaQuery>
     )
 }
 
 const TabletDetector = () => {
-    const windowContext = useContext(WindowContext);
     return (
-        <MediaQuery type={tabletScreen} getWidth={windowContext.getWidth}>
+        <MediaQuery type={tabletScreen}>
             tablet screen
         </MediaQuery>
     )
 }
 
 const DesktopDetector = () => {
-    const windowContext = useContext(WindowContext);
     return (
-        <MediaQuery type={desktopScreen} getWidth={windowContext.getWidth}>
+        <MediaQuery type={desktopScreen}>
             desktop screen
         </MediaQuery>
     )
