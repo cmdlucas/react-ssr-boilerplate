@@ -1,6 +1,5 @@
 import React from 'react';
-import { desktopScreen, mobileScreen, tabletScreen } from '../utils/constants';
-import MediaQuery from '../utils/component/mediaquery/semantic';
+import { MediaQuery, desktopScreen, mobileScreen, tabletScreen } from '@cmdlucas/react-mediaquery';
 
 const MobileDetector = () => {
     return (

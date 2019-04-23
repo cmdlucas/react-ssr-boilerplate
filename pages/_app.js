@@ -2,9 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import App, { Container } from 'next/app';
 import store from '../redux/store';
+import { MqProvider } from '@cmdlucas/react-mediaquery';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { appActivate } from '../utils/constants';
-import { WindowContext } from '../utils/constants';
 
 import { faCheck, faHome, faHashtag } from '@fortawesome/free-solid-svg-icons';
 
@@ -33,9 +33,9 @@ class MyApp extends App {
         return (
             <Provider store={store}>
                 <Container>
-                    <WindowContext.Provider value={{ getWidth: getWidth }}>
+                    <MqProvider width={ getWidth }>
                         <Component {...pageProps} />
-                    </WindowContext.Provider>
+                    </MqProvider>
                 </Container>
             </Provider>
         )

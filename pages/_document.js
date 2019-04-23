@@ -1,6 +1,6 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { responsivePropsInit, getWidthFactory } from '../utils/component/mediaquery/semantic';
+import { widthFactory } from '@cmdlucas/react-mediaquery';
 
 
 /**
@@ -15,7 +15,7 @@ class MyDocument extends Document {
     static async getInitialProps(ctx) {
 
         const globalProps = {
-            getWidth: getWidthFactory(responsivePropsInit(ctx.req))
+            getWidth: widthFactory(ctx.req)
         }
 
         const originalRenderPage = ctx.renderPage
