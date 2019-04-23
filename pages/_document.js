@@ -15,7 +15,7 @@ class MyDocument extends Document {
     static async getInitialProps(ctx) {
 
         const globalProps = {
-            getWidth: widthFactory(ctx.req)
+            getWidth: widthFactory(ctx.req["user-agent"])
         }
 
         const originalRenderPage = ctx.renderPage
